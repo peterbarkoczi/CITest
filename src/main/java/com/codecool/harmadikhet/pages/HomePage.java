@@ -28,5 +28,10 @@ public class HomePage extends BasePage {
         userIcon.click();
     }
 
+    public void logout() {
+        userIcon.click();
+        logoutOption.click();
+    }
+
 
 }
