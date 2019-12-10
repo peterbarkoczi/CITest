@@ -1,6 +1,7 @@
 package com.codecool.harmadikhet.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,6 +28,10 @@ public class LogInPage extends BasePage {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginBtn.click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(byUserIcon));
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(byUserIcon));
+        } catch (TimeoutException TE) {
+            System.out.println("Login attempt failed");
+        }
     }
 }
