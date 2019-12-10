@@ -15,7 +15,7 @@ public class LogoutTest extends BaseTest {
     private LogoutConfirmationPage logoutConfirmationPage;
 
     @BeforeEach
-    public void initObjects() {
+    public void setUp() {
         logIn = new LogIn(driver);
         homePage = new HomePage(driver);
         logoutConfirmationPage = new LogoutConfirmationPage(driver);
@@ -34,4 +34,12 @@ public class LogoutTest extends BaseTest {
         logoutConfirmationPage.browseBackAfterLogout();
         assertTrue(logIn.isLoginFieldsVisibleAfterLogout());
     }
+
+    @Test
+    public void testLogoutOnMultipleTabs() {
+        homePage.logoutOnMultipleTabs();
+        //TODO: create assertions for both tabs
+    }
+
+
 }
