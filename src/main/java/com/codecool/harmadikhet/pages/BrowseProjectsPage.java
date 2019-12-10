@@ -14,7 +14,6 @@ public class BrowseProjectsPage extends BasePage {
     private WebElement mainTestingProjectInList;
 
 
-
     public BrowseProjectsPage(WebDriver driver) {
         super(driver);
         extensionUrl = "/secure/BrowseProjects.jspa?selectedCategory=all&selectedProjectType=all&s=view_projects";

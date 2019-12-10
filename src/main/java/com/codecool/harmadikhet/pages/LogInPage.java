@@ -19,6 +19,9 @@ public class LogInPage extends BasePage {
     @FindBy(id = "login")
     private WebElement loginBtn;
 
+    @FindBy(id = "login-container")
+    private WebElement logInContainer;
+
     public LogInPage(WebDriver driver) {
         super(driver);
     }
@@ -34,4 +37,9 @@ public class LogInPage extends BasePage {
             System.out.println("Login attempt failed");
         }
     }
+
+    public boolean isLoginFieldsVisibleAfterLogout() {
+        return logInContainer.isDisplayed();
+    }
+
 }
