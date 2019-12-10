@@ -17,4 +17,8 @@ public class LogoutConfirmationPage extends BasePage {
     public boolean isLogoutConfirmed() {
         return logoutConfirmation.isDisplayed();
     }
+
+    public void browseBackAfterLogout() {
+        driver.navigate().back();
+    }
 }

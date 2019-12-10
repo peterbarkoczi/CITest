@@ -23,8 +23,15 @@ public class LogoutTest extends BaseTest {
     }
 
     @Test
-    public void testSimpleLoogut() {
+    public void simpleLogout() {
         homePage.logout();
         assertTrue(logoutConfirmationPage.isLogoutConfirmed());
+    }
+
+    @Test
+    public void testBrowseBackAfterLogout() {
+        homePage.logout();
+        logoutConfirmationPage.browseBackAfterLogout();
+        assertTrue(logIn.isLoginFieldsVisibleAfterLogout());
     }
 }

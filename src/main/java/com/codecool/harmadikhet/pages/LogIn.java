@@ -15,6 +15,9 @@ public class LogIn extends BasePage {
     @FindBy(id = "login")
     private WebElement loginBtn;
 
+    @FindBy(id = "login-container")
+    private WebElement logInContainer;
+
     public LogIn(WebDriver driver) {
         super(driver);
     }
@@ -24,6 +27,10 @@ public class LogIn extends BasePage {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginBtn.click();
+    }
+
+    public boolean isLoginFieldsVisibleAfterLogout() {
+        return logInContainer.isDisplayed();
     }
 
 }
