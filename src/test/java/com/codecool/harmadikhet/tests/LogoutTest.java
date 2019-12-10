@@ -6,6 +6,7 @@ import com.codecool.harmadikhet.pages.LogoutConfirmationPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LogoutTest extends BaseTest {
@@ -38,8 +39,7 @@ public class LogoutTest extends BaseTest {
     @Test
     public void testLogoutOnMultipleTabs() {
         homePage.logoutOnMultipleTabs();
-        //TODO: create assertions for both tabs
+        assertFalse(homePage.isLoggedInFirstTab());
+        assertFalse(homePage.isLoggedInSecondTab());
     }
-
-
 }
