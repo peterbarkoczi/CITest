@@ -1,7 +1,7 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.HomePage;
-import com.codecool.harmadikhet.pages.LogIn;
+import com.codecool.harmadikhet.pages.LogInPage;
 import com.codecool.harmadikhet.pages.UnsuccessfulLoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest extends BaseTest {
     private HomePage homePage;
-    private LogIn logInPage;
+    private LogInPage logInPage;
     private UnsuccessfulLoginPage unsuccessfulLoginPage;
 
     @BeforeEach
     void initObjects() {
         homePage = new HomePage(driver);
-        logInPage = new LogIn(driver);
+        logInPage = new LogInPage(driver);
         unsuccessfulLoginPage = new UnsuccessfulLoginPage(driver);
     }
 
@@ -44,8 +44,8 @@ public class LoginTest extends BaseTest {
         return Stream.of(
                 Arguments.of(username.toUpperCase(), password),
                 Arguments.of(username, password.toUpperCase()),
-                Arguments.of(username, "password"),
                 Arguments.of("Username", password),
+                Arguments.of(username, "password"),
                 Arguments.of("", "")
         );
     }
