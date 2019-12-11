@@ -3,6 +3,7 @@ package com.codecool.harmadikhet.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IssueDetailsPage extends BasePage {
 
@@ -10,6 +11,12 @@ public class IssueDetailsPage extends BasePage {
     private WebElement projectName;
     @FindBy(xpath = "//a[@id='key-val']")
     private WebElement projectKey;
+    @FindBy(xpath = "//h1[@id='summary-val']")
+    private WebElement issueTitle;
+    @FindBy(xpath = "//a[@id='edit-issue']")
+    private WebElement editButton;
+    @FindBy(xpath = "//div[@id='aui-flag-container']")
+    private WebElement confirmationAlert;
 
     public IssueDetailsPage(WebDriver driver) {
         super(driver);
@@ -29,6 +36,19 @@ public class IssueDetailsPage extends BasePage {
 
     public String getProjectKey() {
         return projectKey.getText();
+    }
+
+    public String getEditedIssueSummary() {
+        wait.until(ExpectedConditions.invisibilityOf(confirmationAlert));
+        return issueTitle.getText();
+    }
+
+    public String getIssueSummary() {
+        return issueTitle.getText();
+    }
+
+    public void editGivenIssue() {
+        editButton.click();
     }
 }
 
