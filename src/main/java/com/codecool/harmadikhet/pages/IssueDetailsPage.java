@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class IssueDetailsPage extends BasePage {
 
-
     @FindBy(xpath = "//a[@id='project-name-val']")
     private WebElement projectName;
     @FindBy(xpath = "//a[@id='key-val']")
@@ -39,9 +38,12 @@ public class IssueDetailsPage extends BasePage {
         return projectKey.getText();
     }
 
-    public String getProjectSummary() {
+    public String getEditedIssueSummary() {
         wait.until(ExpectedConditions.invisibilityOf(confirmationAlert));
-        //return driver.findElement(By.xpath("//h1[@id='summary-val']")).getText();
+        return issueTitle.getText();
+    }
+
+    public String getIssueSummary() {
         return issueTitle.getText();
     }
 

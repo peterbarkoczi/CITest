@@ -30,8 +30,18 @@ public class EditIssueTest extends BaseTest {
         issueDetailsPage.editGivenIssue();
         issueEditModalPage.editIssue(editedTitle);
         issueEditModalPage.acceptEdit();
-        assertEquals(issueDetailsPage.getProjectSummary(), editedTitle);
+        assertEquals(issueDetailsPage.getEditedIssueSummary(), editedTitle);
         revertIssueChanges(originalTitle);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"/projects/MTP/issues/MTP-899, summary-edit, summary"})
+    public void testCancelEditingGivenIssue(String url, String editedTitle, String originalTitle) {
+        issueDetailsPage.navigateToIssueDetailPage(url);
+        issueDetailsPage.editGivenIssue();
+        issueEditModalPage.editIssue(editedTitle);
+        issueEditModalPage.cancelEdit();
+        assertEquals(issueDetailsPage.getIssueSummary(), originalTitle);
     }
 
     public void revertIssueChanges(String originalTitle) {

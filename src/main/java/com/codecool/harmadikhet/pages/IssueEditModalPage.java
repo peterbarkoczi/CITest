@@ -14,6 +14,8 @@ public class IssueEditModalPage extends BasePage {
     private WebElement issueSummary;
     @FindBy(xpath = "//input[@id='edit-issue-submit']")
     private WebElement updateButton;
+    @FindBy(xpath = "//a[@href='#' and @class='cancel']")
+    private WebElement cancelButton;
 
     public IssueEditModalPage(WebDriver driver) {
         super(driver);
@@ -32,4 +34,11 @@ public class IssueEditModalPage extends BasePage {
         updateButton.click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(editIssueDialog));
     }
+
+    public void cancelEdit() {
+        cancelButton.click();
+        driver.switchTo().alert().accept();
+    }
+
+
 }
