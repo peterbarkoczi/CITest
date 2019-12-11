@@ -12,6 +12,12 @@ public class IssueDetailsPage extends BasePage {
 
     @FindBy(xpath = "//a[@id='key-val']")
     private WebElement projectKey;
+    @FindBy(xpath = "//h1[@id='summary-val']")
+    private WebElement issueTitle;
+    @FindBy(xpath = "//a[@id='edit-issue']")
+    private WebElement editButton;
+    @FindBy(xpath = "//div[@id='aui-flag-container']")
+    private WebElement confirmationAlert;
 
     @FindBy(id = "opsbar-operations_more")
     private WebElement moreBtn;
@@ -53,6 +59,19 @@ public class IssueDetailsPage extends BasePage {
 
     public String getProjectKey() {
         return projectKey.getText();
+    }
+
+    public String getEditedIssueSummary() {
+        wait.until(ExpectedConditions.invisibilityOf(confirmationAlert));
+        return issueTitle.getText();
+    }
+
+    public String getIssueSummary() {
+        return issueTitle.getText();
+    }
+
+    public void editGivenIssue() {
+        editButton.click();
     }
 }
 
