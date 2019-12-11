@@ -12,6 +12,9 @@ public class HomePage extends BasePage {
     @FindBy(id = "log_out")
     private WebElement logoutOption;
 
+    @FindBy(id = "create_link")
+    private WebElement createBtn;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -26,6 +29,10 @@ public class HomePage extends BasePage {
 
     public void clickUserIcon() {
         userIcon.click();
+    }
+
+    public void clickCreateButton() {
+        createBtn.click();
     }
 
 
