@@ -10,7 +10,10 @@ import java.util.ArrayList;
 
 public class HomePage extends BasePage {
 
-    private ArrayList<String> tabs;
+    private LogoutConfirmationPage logoutConfirmationPage = new LogoutConfirmationPage(driver);
+    private LogInPage logInPage = new LogInPage(driver);
+    private boolean isLoggedInFirstTab = true;
+    private boolean isLoggedInSecondTab = true;
 
     @FindBy(id = "header-details-user-fullname")
     private WebElement userIcon;
@@ -44,14 +47,19 @@ public class HomePage extends BasePage {
 
     public void logoutOnMultipleTabs() {
         openNewTabInBrowser();
-        tabs = new ArrayList<>(driver.getWindowHandles());
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         driver.get(baseUrl);
         driver.switchTo().window(tabs.get(0));
         logout();
+        if (logoutConfirmationPage.isLogoutConfirmed()) {
+            setLoggedInFirstTab(false);
+        }
         driver.switchTo().window(tabs.get(1));
         driver.navigate().refresh();
-
+        if (logInPage.isLoginButtonInNavbarVisibleAfterLogout()) {
+            setLoggedInSecondTab(false);
+        }
     }
 
     public void openNewTabInBrowser() {
@@ -59,7 +67,19 @@ public class HomePage extends BasePage {
         ((JavascriptExecutor) driver).executeScript("window.open()");
     }
 
-    //TODO: create methods for verify logout on both tabs
+    public void setLoggedInFirstTab(boolean loggedInFirstTab) {
+        isLoggedInFirstTab = loggedInFirstTab;
+    }
 
+    public void setLoggedInSecondTab(boolean loggedInSecondTab) {
+        isLoggedInSecondTab = loggedInSecondTab;
+    }
 
+    public boolean isLoggedInFirstTab() {
+        return isLoggedInFirstTab;
+    }
+
+    public boolean isLoggedInSecondTab() {
+        return isLoggedInSecondTab;
+    }
 }

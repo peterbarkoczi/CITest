@@ -9,7 +9,6 @@ public class LogoutConfirmationPage extends BasePage {
     @FindBy(xpath = "//h1[text()='Logout']")
     private WebElement logoutConfirmation;
 
-
     public LogoutConfirmationPage(WebDriver driver) {
         super(driver);
     }

@@ -22,6 +22,9 @@ public class LogInPage extends BasePage {
     @FindBy(id = "login-container")
     private WebElement logInContainer;
 
+    @FindBy(xpath = "//li[@id='user-options']")
+    private WebElement loginBtnNavbar;
+
     public LogInPage(WebDriver driver) {
         super(driver);
     }
@@ -40,6 +43,10 @@ public class LogInPage extends BasePage {
 
     public boolean isLoginFieldsVisibleAfterLogout() {
         return logInContainer.isDisplayed();
+    }
+
+    public boolean isLoginButtonInNavbarVisibleAfterLogout() {
+        return loginBtnNavbar.isDisplayed();
     }
 
 }
