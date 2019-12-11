@@ -5,6 +5,7 @@ import com.codecool.harmadikhet.pages.LogInPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,7 +31,15 @@ public class BrowseIssueTest extends BaseTest {
      */
     @ParameterizedTest
     @CsvFileSource(resources = "/browseIssueTestData.csv", numLinesToSkip = 1)
-    public void testBrowseIssueByUrl(String url, String projectName, String projectKey) {
+    public void testBrowseIssuesInCoalaJetiToucanProjects(String url, String projectName, String projectKey) {
+        issueDetailsPage.navigateToIssueDetailPage(url);
+        assertEquals(projectName, issueDetailsPage.getProjectName());
+        assertEquals(projectKey, issueDetailsPage.getProjectKey());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"/browse/MTP-123, Main Testing Project, MTP-123"})
+    public void testBrowseIssuesInAGivenProject(String url, String projectName, String projectKey) {
         issueDetailsPage.navigateToIssueDetailPage(url);
         assertEquals(projectName, issueDetailsPage.getProjectName());
         assertEquals(projectKey, issueDetailsPage.getProjectKey());
