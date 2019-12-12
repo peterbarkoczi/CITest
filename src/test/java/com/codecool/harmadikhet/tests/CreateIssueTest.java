@@ -7,11 +7,14 @@ import com.codecool.harmadikhet.pages.LogInPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,7 +34,7 @@ public class CreateIssueTest extends BaseTest {
     @Test
     public void testCreateIssue() {
         String expectedUUID = createIssuePage.getUUIDinString();
-        IssueDetailsPage issueDetailsPage = createIssuePage.createIssue();
+        IssueDetailsPage issueDetailsPage = createIssuePage.createIssue("Main Testing Project", "Bug");
         assertEquals(expectedUUID, issueDetailsPage.getIssueSummary());
         issueDetailsPage.deleteIssue();
     }
@@ -45,10 +48,11 @@ public class CreateIssueTest extends BaseTest {
 
         HomePage homePage = new HomePage(driver);
         homePage.clickCreateButton();
+
         CreateIssuePage createIssuePage = new CreateIssuePage(driver);
         createIssuePage.fillProjectNameField(projectName);
-        List<String> actualIssueTypes = createIssuePage.getAvailableIssueTypes();
 
+        List<String> actualIssueTypes = createIssuePage.getAvailableIssueTypes();
         for (String expectedIssueType : expectedIssueTypes) {
             assertThat(actualIssueTypes, hasItem(expectedIssueType));
         }
@@ -57,6 +61,27 @@ public class CreateIssueTest extends BaseTest {
 
     public List<String> createExpectedIssueTypes(String...issueTypes) {
         return new ArrayList<>(Arrays.asList(issueTypes));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/createSubTaskData.csv", numLinesToSkip = 1)
+    void testIfSubTaskIsCreatable(String projectName, String issueType) {
+        CreateIssuePage createIssuePage = new CreateIssuePage(driver);
+        IssueDetailsPage currentIssue = createIssuePage.createIssue(projectName, issueType);
+
+        String uuidString = UUID.randomUUID().toString();
+        currentIssue.createSubTask(uuidString);
+
+        List<WebElement> allSubTaskSummaries = currentIssue.getAllSubTaskSummaries();
+
+        verifySubTaskSummaries(uuidString, allSubTaskSummaries);
+        currentIssue.deleteIssue();
+    }
+
+    private void verifySubTaskSummaries(String uuidString,List<WebElement> allSubTaskSummaries) {
+        for (WebElement subTaskSummary : allSubTaskSummaries) {
+            assertEquals(uuidString, subTaskSummary.getText());
+        }
     }
 
 }

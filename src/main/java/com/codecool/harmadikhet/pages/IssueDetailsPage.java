@@ -1,9 +1,12 @@
 package com.codecool.harmadikhet.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class IssueDetailsPage extends BasePage {
 
@@ -12,10 +15,13 @@ public class IssueDetailsPage extends BasePage {
 
     @FindBy(xpath = "//a[@id='key-val']")
     private WebElement projectKey;
+
     @FindBy(xpath = "//h1[@id='summary-val']")
     private WebElement issueTitle;
+
     @FindBy(xpath = "//a[@id='edit-issue']")
     private WebElement editButton;
+
     @FindBy(xpath = "//div[@id='aui-flag-container']")
     private WebElement confirmationAlert;
 
@@ -31,9 +37,8 @@ public class IssueDetailsPage extends BasePage {
     @FindBy(id = "delete-issue-submit")
     private WebElement submitDeleteBtn;
 
-    public String getIssueSummary() {
-        return issueSummary.getText();
-    }
+    @FindBy(className = "stsummary")
+    private List<WebElement> allSubTaskSummaries;
 
     public void deleteIssue() {
         moreBtn.click();
@@ -72,6 +77,20 @@ public class IssueDetailsPage extends BasePage {
 
     public void editGivenIssue() {
         editButton.click();
+    }
+
+    public void createSubTask(String uuidString) {
+        moreBtn.click();
+        WebElement createSubTaskBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.cssSelector("a[href^='/secure/CreateSubTaskIssue']"))
+        );
+        createSubTaskBtn.click();
+        CreateSubTaskModalPage createSubTaskModalPage = new CreateSubTaskModalPage(driver);
+        createSubTaskModalPage.createSubTask(uuidString);
+    }
+
+    public List<WebElement> getAllSubTaskSummaries() {
+        return allSubTaskSummaries;
     }
 }
 

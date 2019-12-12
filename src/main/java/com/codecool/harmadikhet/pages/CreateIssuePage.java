@@ -43,13 +43,19 @@ public class CreateIssuePage extends BasePage {
         popUpWindow.findElement(By.tagName("a")).click();
     }
 
-    public IssueDetailsPage createIssue() {
+    public IssueDetailsPage createIssue(String projectName, String issueType) {
         HomePage homePage = new HomePage(driver);
         homePage.clickCreateButton();
-        setModalField(projectField, "Main Testing Project");
+        setModalField(projectField, projectName);
+
+        WebElement issueTypeField = wait.until(ExpectedConditions.elementToBeClickable(By.id("issuetype-field")));
+        issueTypeField.click();
+        issueTypeField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        issueTypeField.sendKeys(Keys.BACK_SPACE);
+        issueTypeField.sendKeys(issueType, Keys.ENTER);
 
         WebElement summaryField = wait.until(ExpectedConditions.elementToBeClickable(By.id("summary")));
-        setModalField(summaryField, getUUIDinString());
+        summaryField.sendKeys(getUUIDinString());
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-submit"))).click();
         wait.until(ExpectedConditions.invisibilityOf(fullModal));
