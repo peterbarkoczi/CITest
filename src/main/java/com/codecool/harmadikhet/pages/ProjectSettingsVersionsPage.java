@@ -42,6 +42,7 @@ public class ProjectSettingsVersionsPage extends BasePage {
         deleteVersion.click();
         wait.until(ExpectedConditions.elementToBeClickable(deleteConfirmationModalPage.getConfirmDelete()));
         deleteConfirmationModalPage.acceptDelete();
+        driver.navigate().refresh();
     }
 
     public String allVersionDetails(List<WebElement> elements) {

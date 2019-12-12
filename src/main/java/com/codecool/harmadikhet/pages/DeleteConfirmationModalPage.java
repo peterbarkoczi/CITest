@@ -6,6 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class DeleteConfirmationModalPage extends BasePage {
 
+    @FindBy(xpath = "//div[@class='jira-dialog-heading']")
+    private WebElement confirmationModalElement;
+
+
     @FindBy(xpath = "//input[@id='submit']")
     private WebElement confirmDelete;
 
@@ -19,5 +23,9 @@ public class DeleteConfirmationModalPage extends BasePage {
 
     public WebElement getConfirmDelete() {
         return confirmDelete;
+    }
+
+    public WebElement getConfirmationModalElement() {
+        return confirmationModalElement;
     }
 }
