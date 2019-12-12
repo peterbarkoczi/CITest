@@ -1,7 +1,6 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.HomePage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import com.codecool.harmadikhet.pages.LogoutConfirmationPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,35 +8,33 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LogoutTest extends BaseTest {
+class LogoutTest extends BaseTest {
 
-    private LogInPage logIn;
     private HomePage homePage;
     private LogoutConfirmationPage logoutConfirmationPage;
 
     @BeforeEach
-    public void setUp() {
-        logIn = new LogInPage(driver);
+    void setUp() {
         homePage = new HomePage(driver);
         logoutConfirmationPage = new LogoutConfirmationPage(driver);
-        logIn.logIn(username, password);
+        logInPage.logIn(username, password);
     }
 
     @Test
-    public void simpleLogout() {
+    void simpleLogout() {
         homePage.logout();
         assertTrue(logoutConfirmationPage.isLogoutConfirmed());
     }
 
     @Test
-    public void testBrowseBackAfterLogout() {
+    void testBrowseBackAfterLogout() {
         homePage.logout();
         logoutConfirmationPage.browseBackAfterLogout();
-        assertTrue(logIn.isLoginFieldsVisibleAfterLogout());
+        assertTrue(logInPage.isLoginFieldsVisibleAfterLogout());
     }
 
     @Test
-    public void testLogoutOnMultipleTabs() {
+    void testLogoutOnMultipleTabs() {
         homePage.logoutOnMultipleTabs();
         assertFalse(homePage.isLoggedInFirstTab());
         assertFalse(homePage.isLoggedInSecondTab());

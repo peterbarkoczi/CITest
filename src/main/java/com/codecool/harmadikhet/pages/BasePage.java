@@ -7,17 +7,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
     protected WebDriver driver;
-    protected int timeOutInSeconds = 20;
-    protected String baseUrl;
-    protected WebDriverWait wait;
+    String baseUrl;
+    WebDriverWait wait;
 
     public BasePage(){}
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        int timeOutInSeconds = 20;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, timeOutInSeconds), this);
         baseUrl = "https://jira.codecool.codecanvas.hu";
-        wait = new WebDriverWait(driver, 20);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     public void navigateTo(String extendedUrl) {

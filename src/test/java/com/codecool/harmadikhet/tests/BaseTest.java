@@ -1,5 +1,6 @@
 package com.codecool.harmadikhet.tests;
 
+import com.codecool.harmadikhet.pages.LogInPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,9 +14,10 @@ import java.io.IOException;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BaseTest {
-    protected String username;
-    protected String password;
-    protected WebDriver driver;
+    String username;
+    String password;
+    WebDriver driver;
+    LogInPage logInPage;
 
     @BeforeAll
     public void setupTestEnvironment() {
@@ -27,6 +29,7 @@ public class BaseTest {
     public void initDriver() {
         System.setProperty("webdriver.chrome.driver", getBasePath() + "/src/test/resources/chromedriver");
         driver = new ChromeDriver();
+        logInPage = new LogInPage(driver);
         driver.manage().window().maximize();
     }
 

@@ -3,7 +3,6 @@ package com.codecool.harmadikhet.tests;
 import com.codecool.harmadikhet.pages.CreateIssuePage;
 import com.codecool.harmadikhet.pages.HomePage;
 import com.codecool.harmadikhet.pages.IssueDetailsPage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,19 +19,17 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateIssueTest extends BaseTest {
-    private LogInPage logInPage;
+class CreateIssueTest extends BaseTest {
     private CreateIssuePage createIssuePage;
 
     @BeforeEach
-    public void setupTest() {
+    void setupTest() {
         createIssuePage = new CreateIssuePage(driver);
-        logInPage = new LogInPage(driver);
         logInPage.logIn(username, password);
     }
 
     @Test
-    public void testCreateIssue() {
+    void testCreateIssue() {
         String expectedUUID = createIssuePage.getUUIDinString();
         IssueDetailsPage issueDetailsPage = createIssuePage.createIssue("Main Testing Project", "Bug");
         assertEquals(expectedUUID, issueDetailsPage.getIssueSummary());
@@ -43,7 +40,7 @@ public class CreateIssueTest extends BaseTest {
     @CsvSource({
             "Coala", "Toucan", "Jeti"
     })
-    public void testSpecificIssueTypesInSpecificProjects(String projectName) {
+    void testSpecificIssueTypesInSpecificProjects(String projectName) {
         List<String> expectedIssueTypes = createExpectedIssueTypes("Story", "Task", "Bug");
 
         HomePage homePage = new HomePage(driver);
@@ -59,7 +56,7 @@ public class CreateIssueTest extends BaseTest {
 
     }
 
-    public List<String> createExpectedIssueTypes(String...issueTypes) {
+    List<String> createExpectedIssueTypes(String... issueTypes) {
         return new ArrayList<>(Arrays.asList(issueTypes));
     }
 

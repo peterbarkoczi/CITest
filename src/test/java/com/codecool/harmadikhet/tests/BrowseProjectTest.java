@@ -1,7 +1,6 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.BrowseProjectsPage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import com.codecool.harmadikhet.pages.ProjectSummaryPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,14 +10,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BrowseProjectTest extends BaseTest {
-    private LogInPage logInPage;
     private BrowseProjectsPage browseProjectsPage;
     private ProjectSummaryPage projectSummaryPage;
 
     @BeforeEach
     void initObjects() {
         browseProjectsPage = new BrowseProjectsPage(driver);
-        logInPage = new LogInPage(driver);
         projectSummaryPage = new ProjectSummaryPage(driver);
         logInPage.logIn(username, password);
     }

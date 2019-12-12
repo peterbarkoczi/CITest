@@ -1,7 +1,6 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.HomePage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import com.codecool.harmadikhet.pages.UnsuccessfulLoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,21 +11,19 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginTest extends BaseTest {
+class LoginTest extends BaseTest {
     private HomePage homePage;
-    private LogInPage logInPage;
     private UnsuccessfulLoginPage unsuccessfulLoginPage;
 
     @BeforeEach
     void initObjects() {
         homePage = new HomePage(driver);
-        logInPage = new LogInPage(driver);
         unsuccessfulLoginPage = new UnsuccessfulLoginPage(driver);
     }
 
     @ParameterizedTest
     @MethodSource("getCredentialsForSuccessfulLogin")
-    public void testSuccessfulLogIn(String username, String password) {
+    void testSuccessfulLogIn(String username, String password) {
         logInPage.logIn(username, password);
         homePage.clickUserIcon();
         assertTrue(homePage.isUserIconDisplayed());
@@ -35,7 +32,7 @@ public class LoginTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("getCredentialsForUnsuccessfulLogin")
-    public void testUnsuccessfulLogIn(String username, String password) {
+    void testUnsuccessfulLogIn(String username, String password) {
         logInPage.logIn(username, password);
         assertTrue(unsuccessfulLoginPage.isErrorMessageDisplayed());
     }
