@@ -17,7 +17,6 @@ public abstract class BasePage {
         this.driver = driver;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, timeOutInSeconds), this);
         baseUrl = "https://jira.codecool.codecanvas.hu";
-//        waiter = new Waiter();
         wait = new WebDriverWait(driver, 20);
     }
 

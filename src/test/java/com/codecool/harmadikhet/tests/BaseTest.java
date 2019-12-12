@@ -16,13 +16,11 @@ public class BaseTest {
     protected String username;
     protected String password;
     protected WebDriver driver;
-    protected String mainUrl;
 
     @BeforeAll
     public void setupTestEnvironment() {
         this.username = System.getenv("JIRA_USERNAME");
         this.password = System.getenv("JIRA_PASSWORD");
-        this.mainUrl = "https://jira.codecool.codecanvas.hu/";
     }
 
     @BeforeEach

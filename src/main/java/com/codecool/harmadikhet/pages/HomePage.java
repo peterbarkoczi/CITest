@@ -21,6 +21,9 @@ public class HomePage extends BasePage {
     @FindBy(id = "log_out")
     private WebElement logoutOption;
 
+    @FindBy(id = "create_link")
+    private WebElement createBtn;
+
     @FindBy(css = "body")
     private WebElement frame;
 
@@ -38,6 +41,10 @@ public class HomePage extends BasePage {
 
     public void clickUserIcon() {
         userIcon.click();
+    }
+
+    public void clickCreateButton() {
+        createBtn.click();
     }
 
     public void logout() {
