@@ -1,7 +1,6 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.HomePage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import com.codecool.harmadikhet.pages.UnsuccessfulLoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,13 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest extends BaseTest {
     private HomePage homePage;
-    private LogInPage logInPage;
     private UnsuccessfulLoginPage unsuccessfulLoginPage;
 
     @BeforeEach
     void initObjects() {
         homePage = new HomePage(driver);
-        logInPage = new LogInPage(driver);
         unsuccessfulLoginPage = new UnsuccessfulLoginPage(driver);
     }
 

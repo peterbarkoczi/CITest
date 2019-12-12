@@ -1,7 +1,6 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.HomePage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import com.codecool.harmadikhet.pages.LogoutConfirmationPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,16 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LogoutTest extends BaseTest {
 
-    private LogInPage logIn;
     private HomePage homePage;
     private LogoutConfirmationPage logoutConfirmationPage;
 
     @BeforeEach
     public void setUp() {
-        logIn = new LogInPage(driver);
         homePage = new HomePage(driver);
         logoutConfirmationPage = new LogoutConfirmationPage(driver);
-        logIn.logIn(username, password);
+        logInPage.logIn(username, password);
     }
 
     @Test
@@ -33,7 +30,7 @@ public class LogoutTest extends BaseTest {
     public void testBrowseBackAfterLogout() {
         homePage.logout();
         logoutConfirmationPage.browseBackAfterLogout();
-        assertTrue(logIn.isLoginFieldsVisibleAfterLogout());
+        assertTrue(logInPage.isLoginFieldsVisibleAfterLogout());
     }
 
     @Test

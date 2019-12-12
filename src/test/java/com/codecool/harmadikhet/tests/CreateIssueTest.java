@@ -3,7 +3,6 @@ package com.codecool.harmadikhet.tests;
 import com.codecool.harmadikhet.pages.CreateIssuePage;
 import com.codecool.harmadikhet.pages.HomePage;
 import com.codecool.harmadikhet.pages.IssueDetailsPage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,13 +20,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreateIssueTest extends BaseTest {
-    private LogInPage logInPage;
     private CreateIssuePage createIssuePage;
 
     @BeforeEach
     public void setupTest() {
         createIssuePage = new CreateIssuePage(driver);
-        logInPage = new LogInPage(driver);
         logInPage.logIn(username, password);
     }
 
