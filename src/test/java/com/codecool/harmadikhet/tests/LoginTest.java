@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginTest extends BaseTest {
+class LoginTest extends BaseTest {
     private HomePage homePage;
     private UnsuccessfulLoginPage unsuccessfulLoginPage;
 
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("getCredentialsForSuccessfulLogin")
-    public void testSuccessfulLogIn(String username, String password) {
+    void testSuccessfulLogIn(String username, String password) {
         logInPage.logIn(username, password);
         homePage.clickUserIcon();
         assertTrue(homePage.isUserIconDisplayed());
@@ -32,7 +32,7 @@ public class LoginTest extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("getCredentialsForUnsuccessfulLogin")
-    public void testUnsuccessfulLogIn(String username, String password) {
+    void testUnsuccessfulLogIn(String username, String password) {
         logInPage.logIn(username, password);
         assertTrue(unsuccessfulLoginPage.isErrorMessageDisplayed());
     }

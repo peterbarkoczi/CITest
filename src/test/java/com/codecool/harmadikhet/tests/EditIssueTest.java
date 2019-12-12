@@ -8,13 +8,13 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EditIssueTest extends BaseTest {
+class EditIssueTest extends BaseTest {
 
     private IssueDetailsPage issueDetailsPage;
     private IssueEditModalPage issueEditModalPage;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         issueDetailsPage = new IssueDetailsPage(driver);
         logInPage.logIn(username, password);
         issueEditModalPage = new IssueEditModalPage(driver);
@@ -22,7 +22,7 @@ public class EditIssueTest extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({"/projects/MTP/issues/MTP-899, summary-edit, summary"})
-    public void testEditGivenIssue(String url, String editedTitle, String originalTitle) {
+    void testEditGivenIssue(String url, String editedTitle, String originalTitle) {
         issueDetailsPage.navigateToIssueDetailPage(url);
         issueDetailsPage.editGivenIssue();
         issueEditModalPage.editIssue(editedTitle);
@@ -33,7 +33,7 @@ public class EditIssueTest extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({"/projects/MTP/issues/MTP-899, summary-edit, summary"})
-    public void testCancelEditingGivenIssue(String url, String editedTitle, String originalTitle) {
+    void testCancelEditingGivenIssue(String url, String editedTitle, String originalTitle) {
         issueDetailsPage.navigateToIssueDetailPage(url);
         issueDetailsPage.editGivenIssue();
         issueEditModalPage.editIssue(editedTitle);
@@ -41,7 +41,7 @@ public class EditIssueTest extends BaseTest {
         assertEquals(issueDetailsPage.getIssueSummary(), originalTitle);
     }
 
-    public void revertIssueChanges(String originalTitle) {
+    void revertIssueChanges(String originalTitle) {
         issueDetailsPage.editGivenIssue();
         issueEditModalPage.editIssue(originalTitle);
         issueEditModalPage.acceptEdit();

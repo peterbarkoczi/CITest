@@ -13,7 +13,7 @@ public class BrowseIssueTest extends BaseTest {
     private IssueDetailsPage issueDetailsPage;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         issueDetailsPage = new IssueDetailsPage(driver);
         logInPage.logIn(username, password);
     }
@@ -28,7 +28,7 @@ public class BrowseIssueTest extends BaseTest {
      */
     @ParameterizedTest
     @CsvFileSource(resources = "/browseIssueTestData.csv", numLinesToSkip = 1)
-    public void testBrowseIssuesInCoalaJetiToucanProjects(String url, String projectName, String projectKey) {
+    void testBrowseIssuesInCoalaJetiToucanProjects(String url, String projectName, String projectKey) {
         issueDetailsPage.navigateToIssueDetailPage(url);
         assertEquals(projectName, issueDetailsPage.getProjectName());
         assertEquals(projectKey, issueDetailsPage.getProjectKey());
@@ -36,7 +36,7 @@ public class BrowseIssueTest extends BaseTest {
 
     @ParameterizedTest
     @CsvSource({"/browse/MTP-123, Main Testing Project, MTP-123"})
-    public void testBrowseIssuesInAGivenProject(String url, String projectName, String projectKey) {
+    void testBrowseIssuesInAGivenProject(String url, String projectName, String projectKey) {
         issueDetailsPage.navigateToIssueDetailPage(url);
         assertEquals(projectName, issueDetailsPage.getProjectName());
         assertEquals(projectKey, issueDetailsPage.getProjectKey());
