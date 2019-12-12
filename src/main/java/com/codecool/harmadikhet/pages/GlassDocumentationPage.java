@@ -10,9 +10,15 @@ import java.util.List;
 
 public class GlassDocumentationPage extends BasePage {
 
+    private boolean isNewVersionInGlassDocumentation = false;
     private List<String> issueTypes = new ArrayList<>();
     @FindBy(xpath = "//td[@class='glass-meta-value'] // child::span")
     private List<WebElement> summaryItems;
+    @FindBy(xpath = "//a[text()='Versions']")
+    private WebElement versions;
+    @FindBy(xpath = "//table[@id='versions-table']//descendant::tr")
+    private List<WebElement> allVersionsData;
+
 
     public GlassDocumentationPage(WebDriver driver) {
         super(driver);
@@ -25,7 +31,20 @@ public class GlassDocumentationPage extends BasePage {
         }
         Collections.sort(issueTypes);
         return issueTypes;
+    }
 
+    public void checkNewVersionInGlassDocumentation(String name, String description) {
+        navigateTo("/projects/PP5?selectedItem=com.codecanvas.glass:glass");
+        versions.click();
+        for (WebElement versionData : allVersionsData) {
+            if (versionData.getText().contains(name) && versionData.getText().contains(description)) {
+                //System.out.println(versionData.getText());
+                isNewVersionInGlassDocumentation = true;
+            }
+        }
+    }
 
+    public boolean isNewVersionInGlassDocumentation() {
+        return isNewVersionInGlassDocumentation;
     }
 }

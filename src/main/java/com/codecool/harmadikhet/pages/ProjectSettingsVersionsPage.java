@@ -37,6 +37,7 @@ public class ProjectSettingsVersionsPage extends BasePage {
     }
 
     public void deleteNewVersion() {
+        navigateTo("/plugins/servlet/project-config/PP5/administer-versions?status=unreleased");
         deleteConfirmationModalPage = new DeleteConfirmationModalPage(driver);
         versionActions.click();
         deleteVersion.click();
