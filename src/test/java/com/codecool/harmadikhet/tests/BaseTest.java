@@ -1,38 +1,35 @@
 package com.codecool.harmadikhet.tests;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.junit.jupiter.api.*;
+import com.codecool.harmadikhet.pages.LogInPage;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BaseTest {
-    protected String username;
-    protected String password;
-    protected WebDriver driver;
-    protected String mainUrl;
+    String username;
+    String password;
+    WebDriver driver;
+    LogInPage logInPage;
 
     @BeforeAll
     public void setupTestEnvironment() {
         this.username = System.getenv("JIRA_USERNAME");
         this.password = System.getenv("JIRA_PASSWORD");
-        this.mainUrl = "https://jira.codecool.codecanvas.hu/";
     }
 
     @BeforeEach
     public void initDriver() {
-        System.setProperty("webdriver.chrome.driver", getBasePath() + "/src/main/test/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", getBasePath() + "/src/test/resources/chromedriver");
         driver = new ChromeDriver();
+        logInPage = new LogInPage(driver);
         driver.manage().window().maximize();
     }
 
@@ -52,4 +49,5 @@ public class BaseTest {
         }
         return basePath;
     }
+
 }
