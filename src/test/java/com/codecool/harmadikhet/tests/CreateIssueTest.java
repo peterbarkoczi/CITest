@@ -31,7 +31,9 @@ class CreateIssueTest extends BaseTest {
     @Test
     void testCreateIssue() {
         String expectedUUID = createIssuePage.getUUIDinString();
-        IssueDetailsPage issueDetailsPage = createIssuePage.createIssue("Main Testing Project", "Bug");
+        IssueDetailsPage issueDetailsPage = createIssuePage.createIssue(
+                "Main Testing Project", "Bug"
+        );
         assertEquals(expectedUUID, issueDetailsPage.getIssueSummary());
         issueDetailsPage.deleteIssue();
     }
