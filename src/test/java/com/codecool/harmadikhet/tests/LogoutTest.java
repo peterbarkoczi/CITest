@@ -24,6 +24,7 @@ class LogoutTest extends BaseTest {
     void simpleLogout() {
         homePage.logout();
         assertTrue(logoutConfirmationPage.isLogoutConfirmed());
+        assertTrue(logoutConfirmationPage.isLoginOptionDisplayedAfterLogout());
     }
 
     @Test

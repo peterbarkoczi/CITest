@@ -9,12 +9,19 @@ public class LogoutConfirmationPage extends BasePage {
     @FindBy(xpath = "//h1[text()='Logout']")
     private WebElement logoutConfirmation;
 
+    @FindBy(xpath = "//li[@id='user-options']")
+    private WebElement logInOption;
+
     public LogoutConfirmationPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean isLogoutConfirmed() {
         return logoutConfirmation.isDisplayed();
+    }
+
+    public boolean isLoginOptionDisplayedAfterLogout() {
+        return logInOption.isDisplayed();
     }
 
     public void browseBackAfterLogout() {
