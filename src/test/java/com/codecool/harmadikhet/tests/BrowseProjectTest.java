@@ -14,7 +14,7 @@ public class BrowseProjectTest extends BaseTest {
     private ProjectSummaryPage projectSummaryPage;
 
     @BeforeEach
-    void initObjects() {
+    void setUp() {
         browseProjectsPage = new BrowseProjectsPage(driver);
         projectSummaryPage = new ProjectSummaryPage(driver);
         logInPage.logIn(username, password);

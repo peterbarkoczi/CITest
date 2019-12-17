@@ -23,7 +23,7 @@ class CreateIssueTest extends BaseTest {
     private CreateIssuePage createIssuePage;
 
     @BeforeEach
-    void setupTest() {
+    void setUp() {
         createIssuePage = new CreateIssuePage(driver);
         logInPage.logIn(username, password);
     }
