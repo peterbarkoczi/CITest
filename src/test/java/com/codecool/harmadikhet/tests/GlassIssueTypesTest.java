@@ -1,7 +1,7 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.GlassDocumentationPage;
-import com.codecool.harmadikhet.pages.SystemSettingsPage;
+import com.codecool.harmadikhet.pages.ProjectSettingsPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,9 +19,9 @@ class GlassIssueTypesTest extends BaseTest {
     @Test
     void testCompareIssueTypes() {
         GlassDocumentationPage glassDocumentationPage = new GlassDocumentationPage(driver);
-        SystemSettingsPage systemSettingsPage = new SystemSettingsPage(driver);
+        ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver);
         List<String> issueTypesGlass = glassDocumentationPage.getIssueTypes();
-        List<String> issueTypesSystemSettings = systemSettingsPage.getIssueTypesSystemSettings();
+        List<String> issueTypesSystemSettings = projectSettingsPage.getIssueTypesSystemSettings();
         assertTrue(matcher(issueTypesGlass, issueTypesSystemSettings));
     }
 
