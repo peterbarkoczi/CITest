@@ -21,9 +21,7 @@ public class BrowseProjectTest extends BaseTest {
     }
 
     @ParameterizedTest
-    @CsvSource({
-            "Main Testing Project, MTP"
-    })
+    @CsvSource({"Main Testing Project, MTP"})
     void testBrowseAllProjects(String projectName, String projectKey) {
         browseProjectsPage.navigateTo(browseProjectsPage.getExtensionUrl());
         browseProjectsPage.findProject(projectName);
