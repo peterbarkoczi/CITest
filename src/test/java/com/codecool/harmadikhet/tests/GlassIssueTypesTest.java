@@ -21,7 +21,7 @@ class GlassIssueTypesTest extends BaseTest {
         GlassDocumentationPage glassDocumentationPage = new GlassDocumentationPage(driver);
         ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver);
         List<String> issueTypesGlass = glassDocumentationPage.getIssueTypes();
-        List<String> issueTypesSystemSettings = projectSettingsPage.getIssueTypesSystemSettings();
+        List<String> issueTypesSystemSettings = projectSettingsPage.getIssueTypesFromProjectSettings();
         assertTrue(matcher(issueTypesGlass, issueTypesSystemSettings));
     }
 

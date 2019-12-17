@@ -17,7 +17,7 @@ public class ProjectSettingsPage extends BasePage {
         super(driver);
     }
 
-    public List<String> getIssueTypesSystemSettings() {
+    public List<String> getIssueTypesFromProjectSettings() {
         navigateTo("/plugins/servlet/project-config/PP5/summary");
         List<String> issueTypes = new ArrayList<>();
         for (WebElement type : types) {
