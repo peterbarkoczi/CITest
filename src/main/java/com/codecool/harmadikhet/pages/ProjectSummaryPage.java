@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProjectSummaryPage extends BasePage {
 
-    @FindBy(xpath = "//*[@id='summary-body']/div/div[2]/dl/dd[2]")
+    @FindBy(xpath = "//dd[@class='project-meta-value']//following::dd")
     private WebElement projectKey;
 
     public ProjectSummaryPage(WebDriver driver) {

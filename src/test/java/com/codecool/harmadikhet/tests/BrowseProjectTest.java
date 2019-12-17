@@ -14,16 +14,14 @@ public class BrowseProjectTest extends BaseTest {
     private ProjectSummaryPage projectSummaryPage;
 
     @BeforeEach
-    void initObjects() {
+    void setUp() {
         browseProjectsPage = new BrowseProjectsPage(driver);
         projectSummaryPage = new ProjectSummaryPage(driver);
         logInPage.logIn(username, password);
     }
 
     @ParameterizedTest
-    @CsvSource({
-            "Main Testing Project, MTP"
-    })
+    @CsvSource({"Main Testing Project, MTP"})
     void testBrowseAllProjects(String projectName, String projectKey) {
         browseProjectsPage.navigateTo(browseProjectsPage.getExtensionUrl());
         browseProjectsPage.findProject(projectName);

@@ -1,7 +1,6 @@
 package com.codecool.harmadikhet.tests;
 
 import com.codecool.harmadikhet.pages.GlassDocumentationPage;
-import com.codecool.harmadikhet.pages.LogInPage;
 import com.codecool.harmadikhet.pages.ProjectSettingsVersionsPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,13 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GlassVersionsTest extends BaseTest {
 
-    private LogInPage logInPage;
     private ProjectSettingsVersionsPage projectSettingsVersionsPage;
     private GlassDocumentationPage glassDocumentationPage;
 
     @BeforeEach
     void setUp() {
-        logInPage = new LogInPage(driver);
         logInPage.logIn(username, password);
     }
 

@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SystemSettingsPage extends BasePage {
+public class ProjectSettingsPage extends BasePage {
 
     @FindBy(xpath = "//a[@class='project-issuetype']")
     private List<WebElement> types;
 
-    public SystemSettingsPage(WebDriver driver) {
+    public ProjectSettingsPage(WebDriver driver) {
         super(driver);
     }
 
-    public List<String> getIssueTypesSystemSettings() {
+    public List<String> getIssueTypesFromProjectSettings() {
         navigateTo("/plugins/servlet/project-config/PP5/summary");
         List<String> issueTypes = new ArrayList<>();
         for (WebElement type : types) {
