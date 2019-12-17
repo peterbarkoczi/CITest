@@ -3,7 +3,7 @@
   -- logout\
   -- browse projects / issues\
   -- create / edit issues\
-  -- validate the Glass Documentation's content belongs to a given project\
+  -- validate the Glass Documentation's content belongs to a given project
   
 * Automated tests are based on previously written manual test cases (a few included in a separate folder)
 
@@ -12,7 +12,7 @@
   -- to separate Selenium methods and logic from the test cases\
   -- use "future-proof", stable locators (mostly xpath)\
   -- use several Data Driven Testing techniques in the test cases as data sources\
-  -- create easy to understand test cases with clear assertations\
+  -- create easy to understand test cases with clear assertations
 
 * Overall test results:\
   -- number of tests: 41\
