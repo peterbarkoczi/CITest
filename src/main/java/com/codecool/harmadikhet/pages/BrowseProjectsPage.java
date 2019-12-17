@@ -10,7 +10,7 @@ public class BrowseProjectsPage extends BasePage {
     @FindBy(id = "project-filter-text")
     private WebElement searchInputField;
 
-    @FindBy(css = "a[title='Main Testing Project']")
+    @FindBy(xpath = "//a[@title='Main Testing Project']")
     private WebElement mainTestingProjectInList;
 
 
