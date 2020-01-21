@@ -6,11 +6,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BaseTest {
@@ -18,6 +23,8 @@ public class BaseTest {
     String password;
     WebDriver driver;
     LogInPage logInPage;
+    Grid grid;
+
 
     @BeforeAll
     public void setupTestEnvironment() {
@@ -27,10 +34,13 @@ public class BaseTest {
 
     @BeforeEach
     public void initDriver() {
-        System.setProperty("webdriver.chrome.driver", getBasePath() + "/src/test/resources/chromedriver");
-        driver = new ChromeDriver();
+        grid = new Grid("firefox", "linux");
+        try {
+            driver = new RemoteWebDriver(new URL(grid.getNodeURL()), grid.getCapabilities());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         logInPage = new LogInPage(driver);
-        driver.manage().window().maximize();
     }
 
     @AfterEach
