@@ -6,10 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
@@ -34,13 +31,14 @@ public class BaseTest {
 
     @BeforeEach
     public void initDriver() {
-        grid = new Grid("firefox", "linux");
+        grid = new Grid(System.getenv("BROWSER"), System.getenv("PLATFORM"));
         try {
             driver = new RemoteWebDriver(new URL(grid.getNodeURL()), grid.getCapabilities());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         logInPage = new LogInPage(driver);
+        System.out.println(System.getenv("BROWSER"));
     }
 
     @AfterEach
