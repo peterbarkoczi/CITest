@@ -38,7 +38,6 @@ public class BaseTest {
             e.printStackTrace();
         }
         logInPage = new LogInPage(driver);
-        System.out.println(System.getenv("BROWSER"));
     }
 
     @AfterEach
