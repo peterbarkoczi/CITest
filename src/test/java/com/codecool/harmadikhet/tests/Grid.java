@@ -15,7 +15,6 @@ public class Grid {
         this.platform = platform;
         this.setBrowser(this.browser);
         this.setPlatform(this.platform);
-        capabilities.setCapability("name", getClass().getSimpleName());
         this.nodeURL = "https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub";
 
 
