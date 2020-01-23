@@ -16,8 +16,6 @@ public class Grid {
         this.setBrowser(this.browser);
         this.setPlatform(this.platform);
         this.nodeURL = "https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub";
-
-
     }
 
     void setBrowser(String browser) {
