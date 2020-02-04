@@ -52,4 +52,5 @@ public class Grid {
     private void setTestName() {
         capabilities.setCapability("name", getClass().getSimpleName());
     }
+    
 }
