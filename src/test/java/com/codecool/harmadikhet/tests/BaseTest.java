@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
@@ -31,12 +32,14 @@ public class BaseTest {
 
     @BeforeEach
     public void initDriver() {
-        grid = new Grid(System.getenv("BROWSER"), System.getenv("PLATFORM"));
-        try {
-            driver = new RemoteWebDriver(new URL(grid.getNodeURL()), grid.getCapabilities());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+//        grid = new Grid(System.getenv("BROWSER"), System.getenv("PLATFORM"));
+//        try {
+//            driver = new RemoteWebDriver(new URL(grid.getNodeURL()), grid.getCapabilities());
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+        System.setProperty("webdriver.chrome.driver",getBasePath() + "/src/main/resources/chromedriver");
+        driver = new ChromeDriver();
         logInPage = new LogInPage(driver);
     }
 
