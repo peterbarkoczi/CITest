@@ -15,6 +15,7 @@ public class Grid {
         this.platform = platform;
         this.setBrowser(this.browser);
         this.setPlatform(this.platform);
+        this.setTestName();
         this.nodeURL = System.getenv("NODE_URL");
     }
 
@@ -46,5 +47,9 @@ public class Grid {
                 capabilities.setPlatform(Platform.XP);
                 break;
         }
+    }
+
+    private void setTestName() {
+        capabilities.setCapability("name", getClass().getSimpleName());
     }
 }
