@@ -23,7 +23,9 @@
                 <version>3.0.0-M4</version>
                 <configuration>
                     <systemPropertyVariables>
+                        <!--suppress UnresolvedMavenProperty -->
                         <browser>${env.BROWSER}</browser>
+                        <!--suppress UnresolvedMavenProperty -->
                         <platform>${env.PLATFORM}</platform>
                     </systemPropertyVariables>
                 </configuration>
